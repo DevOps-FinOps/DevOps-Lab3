@@ -23,14 +23,13 @@ jobs:
       - name: Remove the container
         run: docker rm go-container
 
-      - name: Commit and push generated file
+      - name: Commit and push file
         run: |
-            git config --global user.email "actions@github.com"
-            git config --global user.name "GitHub Actions"
-            git add hello.txt
-            git commit -m "Added txt file"
-            git push
-          |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add hello.txt
+          git commit -m "Added hello.txt"
+          git push |
 
       - name: Finishing
         run: echo "file was uploaded!"
