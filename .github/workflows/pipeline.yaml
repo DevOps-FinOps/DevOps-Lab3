@@ -1,5 +1,10 @@
 name: lab-03-workflow
 
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
 on:
   push:
     branches:
