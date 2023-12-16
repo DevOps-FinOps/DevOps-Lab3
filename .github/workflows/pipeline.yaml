@@ -12,16 +12,16 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Create and commit hello.txt
-        uses: docker build -t goapp .
+        run: docker build -t goapp .
 
       - name: Starting a container with created image
-        uses: docker run --name go-container goapp
+        run: docker run --name go-container goapp
 
       - name: Replace file
-        uses: docker cp go-container:usr/bin/start $GITHUB_WORKSPACE
+        run: docker cp go-container:usr/bin/start $GITHUB_WORKSPACE
 
       - name: Remove the container
-        uses: docker rm go-container
+        run: docker rm go-container
 
       - name: Commit and push generated file
         run: |
