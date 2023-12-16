@@ -29,7 +29,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git add hello.txt
           git commit -m "Added hello.txt"
-          git push |
+          git push
 
       - name: Finishing
         run: echo "file was uploaded!"
