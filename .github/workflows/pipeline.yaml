@@ -1,0 +1,36 @@
+name: lab-03-workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create and commit hello.txt
+        uses: docker build -t goapp .
+
+      - name: Starting a container with created image
+        uses: docker run --name go-container goapp
+
+      - name: Replace file
+        uses: docker cp go-container:usr/bin/start $GITHUB_WORKSPACE
+
+      - name: Remove the container
+        uses: docker rm go-container
+
+      - name: Commit and push generated file
+        run: |
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git add hello.txt
+            git commit -m "Added txt file"
+            git push
+          |
+
+      - name: Finishing
+        run: echo "file was uploaded!"
