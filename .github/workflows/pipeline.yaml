@@ -18,7 +18,7 @@ jobs:
         run: docker run --name go-container goapp
 
       - name: Replace file
-        run: docker cp go-container:usr/bin/start $GITHUB_WORKSPACE
+        run: docker cp go-container:hello.txt $GITHUB_WORKSPACE
 
       - name: Remove the container
         run: docker rm go-container
